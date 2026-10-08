@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* Paleta y tipografías tomadas del logo de Kira */
+@theme {
+    --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+
+    --color-cream: #faf7f0;
+    --color-cream-200: #f3ede1;
+    --color-cream-300: #e9e0cf;
+
+    --color-kira-50: #eef5fb;
+    --color-kira-100: #dceaf5;
+    --color-kira-300: #8fbbe0;
+    --color-kira-500: #4a8bc2;
+    --color-kira-600: #3a75aa;
+    --color-kira-700: #2f5f8c;
+
+    --color-gold-200: #eedfbd;
+    --color-gold-400: #d6b77a;
+    --color-gold-500: #c9a45c;
+    --color-gold-600: #a9853f;
+
+    --color-ink: #22364d;
+    --color-ink-soft: #5b6b7d;
+
+    --animate-fade-in: fade-in 0.6s ease-out both;
+
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: none; }
+    }
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-cream font-sans text-ink antialiased;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    ::selection {
+        @apply bg-gold-200 text-ink;
+    }
+}
+
+@utility container-kira {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility eyebrow {
+    @apply text-xs font-medium tracking-[0.3em] text-gold-600 uppercase;
+}
+
+@utility title-display {
+    @apply font-display font-medium text-ink;
+}
+
+@utility btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility btn-primary {
+    @apply btn bg-kira-500 text-white shadow-sm hover:bg-kira-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kira-500;
+}
+
+@utility btn-outline {
+    @apply btn border border-kira-500/40 text-kira-700 hover:border-kira-500 hover:bg-kira-50;
+}
+
+@utility btn-whatsapp {
+    @apply btn bg-[#25d366] text-white shadow-sm hover:bg-[#1ebe5b];
+}
+
+@utility input-kira {
+    @apply w-full rounded-full border border-cream-300 bg-white/70 px-5 py-2.5 text-sm text-ink placeholder:text-ink-soft/60 focus:border-kira-300 focus:ring-2 focus:ring-kira-100 focus:outline-none;
+}
+
+@layer components {
+    /* Línea dorada fina con destello central, como en el logo */
+    .divider-sparkle {
+        @apply flex items-center justify-center gap-3 text-gold-500;
+    }
+
+    .divider-sparkle::before,
+    .divider-sparkle::after {
+        content: '';
+        @apply h-px w-12 bg-linear-to-r from-transparent to-gold-400;
+    }
+
+    .divider-sparkle::after {
+        @apply bg-linear-to-l;
+    }
+
+    .prose-kira p {
+        @apply mb-4 leading-relaxed text-ink-soft;
+    }
+}
